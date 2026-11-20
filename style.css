@@ -3,19 +3,40 @@ FRUTELLI GHANA
 YAXO-SYSTEMS WEBSITE CONCEPT
 BRAND-INSPIRED COLOUR THEME
 ========================================= */
+/* FRUTELLI GHANA BRAND THEME */
 
 :root {
-–green: #087b35;
-–deep: #064d27;
-–lime: #39b54a;
-–cream: #ffffff;
-–orange: #f28c28;
-–yellow: #f8d84e;
-–ink: #183b27;
-–muted: #69756d;
-–light-green: #eaf5ec;
-–border: #dce9dd;
-–white: #ffffff;
+    /* Main Brand Colours */
+    --green: #087b35;
+    --deep: #064d27;
+    --lime: #39b54a;
+
+    /* Dashboard Backgrounds */
+    --background: #087b35;
+    --dashboard-bg: #087b35;
+    --header-bg: #064d27;
+    --section-bg: #ffffff;
+    --card-bg: #ffffff;
+
+    /* Supporting Colours */
+    --cream: #ffffff;
+    --orange: #f28c28;
+    --yellow: #f8d84e;
+    --light-green: #eaf5ec;
+
+    /* Text Colours */
+    --ink: #183b27;
+    --text-light: #ffffff;
+    --muted: #69756d;
+
+    /* Borders and Effects */
+    --border: rgba(255, 255, 255, 0.2);
+    --white: #ffffff;
+
+    /* Buttons */
+    --button-bg: #f8d84e;
+    --button-text: #064d27;
+    --button-hover: #f28c28;
 }
 
 * {
