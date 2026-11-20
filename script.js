@@ -1,65 +1,91 @@
-// ===================================
-// FRUTELLI GHANA
-// WEBSITE FUNCTIONALITY
-// Developed by Yaxo-Systems
-// ===================================
+/* =========================================
+   FRUTELLI GHANA
+   YAXO-SYSTEMS WEBSITE CONCEPT
+   JAVASCRIPT
+========================================= */
 
 
-// MOBILE NAVIGATION
+/* =========================================
+   MOBILE NAVIGATION
+========================================= */
 
-const menuButton = document.querySelector(".menu-toggle");
+const menuToggle = document.querySelector(".menu-toggle");
 const navigation = document.querySelector(".navigation");
 
-menuButton.addEventListener("click", () => {
+if (menuToggle && navigation) {
 
-    const isOpen = navigation.classList.toggle("open");
+  menuToggle.addEventListener("click", () => {
 
-    menuButton.setAttribute(
-        "aria-expanded",
-        String(isOpen)
+    navigation.classList.toggle("open");
+
+    const isOpen = navigation.classList.contains("open");
+
+    menuToggle.setAttribute("aria-expanded", isOpen);
+
+    menuToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation" : "Open navigation"
     );
 
-    menuButton.textContent = isOpen ? "×" : "☰";
+    menuToggle.textContent = isOpen ? "×" : "☰";
 
-});
+  });
 
 
-// CLOSE MENU AFTER CLICKING A LINK
+  const navigationLinks = navigation.querySelectorAll("a");
 
-navigation.querySelectorAll("a").forEach((link) => {
+  navigationLinks.forEach(link => {
 
     link.addEventListener("click", () => {
 
-        navigation.classList.remove("open");
+      navigation.classList.remove("open");
 
-        menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-        );
+      menuToggle.setAttribute("aria-expanded", "false");
 
-        menuButton.textContent = "☰";
+      menuToggle.setAttribute("aria-label", "Open navigation");
+
+      menuToggle.textContent = "☰";
 
     });
 
-});
+  });
+
+}
 
 
-// AUTOMATIC COPYRIGHT YEAR
+/* =========================================
+   AUTOMATIC COPYRIGHT YEAR
+========================================= */
 
-document.getElementById("year").textContent =
-    new Date().getFullYear();
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}
 
 
-// CONTACT FORM
+/* =========================================
+   CONTACT FORM
+========================================= */
 
 const enquiryForm = document.getElementById("enquiry-form");
 
-enquiryForm.addEventListener("submit", (event) => {
+const formNote = document.getElementById("form-note");
+
+
+/*
+  Replace this placeholder with Frutelli's
+  approved official email address before launch.
+*/
+
+const recipient = "ADD-OFFICIAL-EMAIL-HERE";
+
+
+if (enquiryForm) {
+
+  enquiryForm.addEventListener("submit", function(event) {
 
     event.preventDefault();
-
-
-    // GET FORM INFORMATION
 
     const name = document.getElementById("name").value.trim();
 
@@ -70,60 +96,97 @@ enquiryForm.addEventListener("submit", (event) => {
     const message = document.getElementById("message").value.trim();
 
 
-    // VALIDATE FORM
-
     if (!name || !email || !message) {
 
-        document.getElementById("form-note").textContent =
-            "Please complete all required fields.";
+      formNote.textContent = "Please complete all required fields.";
 
-        return;
+      return;
 
     }
 
 
-    // OFFICIAL FRUTELLI EMAIL
-    // Replace this placeholder after confirmation.
+    if (!email.includes("@") || !email.includes(".")) {
 
-    const recipient = "ADD-OFFICIAL-EMAIL-HERE";
+      formNote.textContent = "Please enter a valid email address.";
 
+      return;
 
-    // DEMONSTRATION MODE
+    }
+
 
     if (recipient === "ADD-OFFICIAL-EMAIL-HERE") {
 
-        document.getElementById("form-note").textContent =
-            "The form is working in demo mode. Add Frutelli's approved email address in script.js to enable email submission.";
+      formNote.textContent =
+        "Thank you, " + name +
+        ". The form is currently in demonstration mode. The official company email must be added before enquiries can be sent.";
 
-        return;
+      return;
 
     }
 
 
-    // PREPARE EMAIL
-
     const subject = encodeURIComponent(
-        `Frutelli website enquiry: ${enquiry}`
+      "Frutelli Website Enquiry - " + enquiry
     );
 
     const body = encodeURIComponent(
 
-        `Name: ${name}
-
-Email: ${email}
-
-Enquiry: ${enquiry}
-
-Message:
-
-${message}`
+      "Name: " + name + "\n" +
+      "Email: " + email + "\n" +
+      "Enquiry type: " + enquiry + "\n\n" +
+      "Message:\n" + message
 
     );
 
 
-    // OPEN EMAIL APPLICATION
+    const mailtoLink =
+      "mailto:" + recipient +
+      "?subject=" + subject +
+      "&body=" + body;
 
-    window.location.href =
-        `mailto:${recipient}?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink;
+
+    formNote.textContent =
+      "Your email application should open with your enquiry prepared.";
+
+  });
+
+}
+
+
+/* =========================================
+   SMOOTH SECTION NAVIGATION
+========================================= */
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+  link.addEventListener("click", function(event) {
+
+    const targetId = this.getAttribute("href");
+
+    if (targetId === "#") return;
+
+    const target = document.querySelector(targetId);
+
+    if (target) {
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+
+  });
 
 });
+
+
+/* =========================================
+   WEBSITE READY
+========================================= */
+
+console.log("Frutelli Ghana website loaded successfully.");
+console.log("Designed as a concept by Yaxo-Systems.");
