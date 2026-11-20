@@ -190,3 +190,15 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
 console.log("Frutelli Ghana website loaded successfully.");
 console.log("Designed as a concept by Yaxo-Systems.");
+// PAGE LOADER
+window.addEventListener("load", function () {
+    const loader = document.getElementById("page-loader");
+
+    if (loader) {
+        loader.classList.add("hide");
+
+        setTimeout(function () {
+            loader.remove();
+        }, 600);
+    }
+});
