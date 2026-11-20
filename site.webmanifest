@@ -1,0 +1,17 @@
+{
+  "name": "Frutelli Ghana",
+  "short_name": "Frutelli",
+  "description": "Discover Frutelli Ghana and its refreshing fruit juice products.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#087b35",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
